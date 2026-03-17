@@ -12,6 +12,8 @@ import Shop from "./pages/Shop.jsx";
 import Product from './pages/Product.jsx';
 import Checkout from './pages/Checkout';
 import Explore from './pages/Explore.jsx';
+import NotFound from './pages/NotFound.jsx';
+import Footer from './components/Footer.jsx';
 
 
 
@@ -60,14 +62,13 @@ const addToCart = (product) => {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/my-account" element={<MyAccount />} />
         <Route path="/my-orders" element={<MyOrders />} />
-        {/* <Route path="/cart" element={<Cart />} /> */}
         <Route path="/shop" element={<Shop search={search} />} />
         <Route path="/explore" element={<Explore/>} />
         <Route path="/product/:id" element={<Product addToCart={addToCart} />} />
         <Route path="/checkout" element={<Checkout setCart={setCart} />} />
-    
+        <Route path="*" element={<NotFound />} />    
       </Routes>
-   
+     
     </Router>
     </>
   )

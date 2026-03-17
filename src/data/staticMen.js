@@ -17,6 +17,7 @@ const staticMen = [
       image: "https://tse4.mm.bing.net/th/id/OIP.tEjpPMFv13d8RTJ74X5z8gAAAA?pid=ImgDet&w=187&h=187&c=7&dpr=1,3&o=7&rm=3",
       category: "men",
       subcategory: "hoodie",
+      popular: true,
     },
     {
       id: 103,
@@ -35,6 +36,7 @@ const staticMen = [
       image: "https://th.bing.com/th/id/OIP.UIKDA9rnpV48gcaKqc67TwHaHa?w=193&h=193&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3",
       category: "men",
          subcategory: "jacket",
+         popular: true,
     },
     {
         id: 105,
@@ -54,6 +56,7 @@ const staticMen = [
         image: "https://tse4.mm.bing.net/th/id/OIP.Jlkg3KIiNADWzYbNgW7w9wHaHa?pid=ImgDet&w=187&h=187&c=7&dpr=1,3&o=7&rm=3",
         category: "men",
          subcategory: "coat",
+         popular: true,
       }
     ]
 

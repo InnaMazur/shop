@@ -8,15 +8,17 @@ const staticWomen = [
       image: "https://tse1.explicit.bing.net/th/id/OIP.d_h7rPOzDfKOOnW3cWKkEgHaLH?pid=ImgDet&w=187&h=280&c=7&dpr=1,3&o=7&rm=3",
       category: "women'",
       subcategory: "dress",
+      popular: true,
     },
     {
       id: 108,
       title: "Summer Skirt",
       price: 35,
       description: "A light and breezy summer skirt with a floral pattern, perfect for warm weather and casual outings.",
-      image: "https://tse3.mm.bing.net/th/id/OIP.HUmvoWkQIo_PKuc2pRie-gHaEp?pid=ImgDet&w=187&h=117&c=7&dpr=1,3&o=7&rm=3",
+      image: "https://tse1.mm.bing.net/th/id/OIP.2elf2-cZNqTVU90GZXek7gHaLH?pid=ImgDet&w=187&h=280&c=7&dpr=1,3&o=7&rm=3",
       category: "women",
       subcategory: "skirt",
+      popular: true,
     },
     {
       id: 109, 
@@ -35,6 +37,8 @@ const staticWomen = [
       image:"https://tse1.mm.bing.net/th/id/OIP.DluconkJfMjInJ1_D2ocMgHaEJ?pid=ImgDet&w=187&h=104&c=7&dpr=1,3&o=7&rm=3",
       category: "women",
      subcategory: "skirt",
+     popular: true,
+
     }
   ]
   export default staticWomen;

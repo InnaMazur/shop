@@ -2,7 +2,7 @@
 import { useParams } from "react-router-dom";
 import {getProducts} from "../data/api.js";
 import {useEffect, useState} from "react";
-
+import { Link } from "react-router-dom"
 
 function Product({ addToCart}) {
 
@@ -39,7 +39,9 @@ return <h2>Product not found</h2>;
 return (
 
 <div className="product-page">
-
+<Link to="/shop" className="back-to-products">
+ Back to products
+</Link>
  <div className="product-page-image">
  <img src={product.image} alt={product.title} />
  </div>

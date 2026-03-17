@@ -7,16 +7,16 @@ function Shop(){
     const queryParams = new URLSearchParams(location.search);
     const category = queryParams.get("category");
     const subcategory = queryParams.get("subcategory");
-    const search = queryParams.get("search")
+    const search = queryParams.get("search");
+
 
     return(
-    
     <div>
     
-    <Clothes category={category} subcategory={subcategory}  search={search} />
+    <Clothes category={category} subcategory={subcategory}  search={search}  />
     
     </div>
-    
+   
     )
     
     }

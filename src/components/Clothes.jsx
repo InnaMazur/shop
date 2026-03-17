@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { getProducts } from "../data/api"
 import { Link } from "react-router-dom"
 
-function Clothes({category, subcategory, search}) {
+function Clothes({category, subcategory, search, minPrice, maxPrice}) {
 
 const [products, setProducts] = useState([])
 
@@ -27,19 +27,21 @@ console.error("Error fetching products:", error);
 
 const filteredProducts = products.filter(product => {
 
-  
- 
-        // if( query.length >=2  && !product.title.toLowerCase().includes(query)){
-        //      return false
-        // }
-
         if(query.length >= 3){
 if(!product.title || !product.title.toLowerCase().includes(query)){
     return false
 }}
+
     if (product.title.toLowerCase().includes("backpack")){
         return false
     }
+    if (minPrice && product.price < Number(minPrice)) {
+        return false
+      }
+      
+      if (maxPrice && product.price > Number(maxPrice)) {
+        return false
+      }
 
     if (subcategory ==="popular" && !product.popular) {
         return false
@@ -47,7 +49,7 @@ if(!product.title || !product.title.toLowerCase().includes(query)){
     if (category && product.category !== category) {
     return false
     }
-    if (subcategory && product.subcategory !== subcategory) {
+    if (subcategory && subcategory !== "popular" && product.subcategory !==subcategory) {
     return false
     }
     return true
@@ -102,7 +104,6 @@ return (
 ))}
 
 </div>
-
 
 );
 

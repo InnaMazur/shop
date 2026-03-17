@@ -4,7 +4,6 @@ function Footer() {
       <footer className="footer">
   
         <div className="footer-row1">
-         {/* <span>IN STYLE</span>   */}
          <span>Shop</span> 
            <span>About</span> 
            <span>Contact</span>

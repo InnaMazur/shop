@@ -10,7 +10,8 @@ function Header({search, setSearch, cart, setCart}) {
     localStorage.removeItem("user");
     localStorage.removeItem("orders");
     localStorage.removeItem("cart");
-    window.location.reload();
+    // window.location.reload();
+    navigate ("/");
   };
  
     const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -59,7 +60,7 @@ return (
          <div className="container d-flex align-items-center justify-content-between">
     
          <div className='d-flex align-items-center gap-4'>
-         <button className="btn p-0 text-white" onClick={openSidebar}>
+         <button className="btn  p-1 text-white" onClick={openSidebar}>
              <FontAwesomeIcon icon={faBars}/>
            </button>
            <div className='logo'>

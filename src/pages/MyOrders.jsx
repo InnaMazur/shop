@@ -70,11 +70,6 @@ function MyOrders() {
               Total: {totalPrice.toFixed(2)} €
             </h5>
            
-            {/* <div className="text-center mb-4">
-            <Link to="/shop" className="btn  btn-outline-dark text-dark fw-bold px-4 hover-btn">
-             Back to  Shop
-           </Link>
-           </div> */}
           </div>
 
         );

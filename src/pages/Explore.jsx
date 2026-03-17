@@ -1,87 +1,132 @@
 
 import { useEffect, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import {Pagination} from "swiper/modules";
 import { Link } from "react-router-dom";
-import "swiper/css";
-import "swiper/css/pagination";
 import staticMen from "../data/staticMen";
 import staticWomen from "../data/staticWomen";
 
+
 function Explore() {
 
-const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [visible, setVisible] = useState(5);
+  const [shuffledProducts,setShuffledProducts]=useState([]);
+    const [min, setMin] = useState("");
+      const [max, setMax] = useState("");
 
+  useEffect(() => {
+    fetch("https://fakestoreapi.com/products")
+      .then(res => res.json())
+      .then(data => setProducts(data));
+  }, []);
 
-useEffect(() => {
-
-fetch("https://fakestoreapi.com/products")
-.then(res => res.json())
-.then(data => setProducts(data))
-
-}, [])
-const allProducts =[
+  const allProducts = [
     ...products,
     ...staticMen,
     ...staticWomen
-]
-const clothingProducts = allProducts.filter(
-    product=>
-        product.category ==="men's clothing"||
-    product.category==="women's clothing"||
-    product.category==="man"||
-    product.category==="woman"
-)
-const shuffledProducts = [...clothingProducts].sort(() => Math.random() - 0.5)
-    return (
+  ];
+     useEffect(()=>{
 
-        <div className="explore-container">
-        
-        <h1 style={{textAlign: "center", marginBottom:"40px"}}>
-            Explore Products
-            </h1>
-        
-        <Swiper
-        modules={[Pagination]}
-      pagination={{clickable: true}}
-        loop={false}
-        spaceBetween={30}
-        slidesPerView={3}
-        breakpoints={{
-            640:{
-                slidesPerView:1,
-            },
-            768:{
-                slidesPerView: 2,
-            },
-            1024:{
-                slidesPerView: 4,
-            }
-        }}
+     
+  const clothingProducts = allProducts.filter(product =>
+  ["men's clothing", "women's clothing", "men", "women"].includes(product.category)
+   
+  );
 
-        >
-        
-        {shuffledProducts.map(product => (
-        
-        <SwiperSlide key={product.id}>
-        <Link to={`/product/${product.id}`} style={{textDecoration:"none",color:"black"}}>
-        <img src={product.image} width="150" />
-        
-        <p>{product.title}</p>
-        
-        <p>{product.price} €</p>
-        </Link>
-        
-        </SwiperSlide>
-        
+
+  const shuffled = [...clothingProducts].sort(() => Math.random() - 0.5);
+  setShuffledProducts(shuffled);
+}, [products]);
+
+  return (
+
+    <div className="explore-container">
+
+    <div style={{textAlign:"center", marginTop:"90px"}}>
+    <p style={{marginBottom:"10px", fontWeight:"bold"}}>
+     Price filter
+     </p>
+     <div className="filter-container">
+      <input
+        type="number"
+        placeholder="Min price"
+        value={min}
+        onChange={(e)=>setMin(e.target.value)}
+      />
+
+      <input
+        type="number"
+        placeholder="Max price"
+        value={max}
+        onChange={(e)=>setMax(e.target.value)}
+       />
+      </div>
+   
+    </div>
+
+      <h1 style={{ textAlign: "center", marginTop:"80px" }}>
+        Explore Products
+      </h1>
+
+      <div className="products-grid"  style={{marginTop:"-80px"}} >
+
+      {shuffledProducts
+.filter(product => {
+  if (min && product.price < min) return false
+  if (max && product.price > max) return false
+  return true
+})
+.slice(0, visible)
+.map(product => (
+
+            <div key={product.id} className="product-card"
+>
+
+            <Link
+              to={`/product/${product.id}`}
+              style={{ textDecoration: "none", color: "black" }}
+            >
+
+              <img src={product.image} width="150" />
+
+              <p>{product.title}</p>
+
+              <p>{product.price} €</p>
+
+            </Link>
+
+          </div>
+
         ))}
-        
-        </Swiper>
-        
-        </div>
-        
-        )
 
+      </div>
+
+      {visible < shuffledProducts.length ? (
+
+        <div style={{ textAlign: "center", marginTop: "30px" }}>
+          <button onClick={() => setVisible(visible + 5)}>
+            Show more
+          </button>
+        </div>
+      )
+       : (
+        <div style={{ textAlign: "center", marginTop: "20px" }}>
+          <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+            Back to top
+          </button>
+        </div>
+
+      )}
+
+    </div>
+  
+  );
+ 
 }
 
-export default Explore
+export default Explore;
+
+
+        
+
+        
+        
