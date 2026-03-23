@@ -27,7 +27,6 @@ function SignIn() {
   return (
  <div className="container-fluid mt-5"
         >
-        <Header></Header>
         {message && (
           <div className="signin-alert">
             {message}

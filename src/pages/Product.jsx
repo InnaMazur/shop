@@ -37,7 +37,7 @@ return <h2>Product not found</h2>;
       };
 
 return (
-
+<div className="container mt-4">
 <div className="product-page">
 <Link to="/shop" className="back-to-products">
  Back to products
@@ -70,7 +70,7 @@ return (
  </div>
 
  </div>  
-
+ </div>
 );
 
 }

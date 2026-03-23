@@ -13,7 +13,23 @@ useEffect(() => {
   }
 }, []);
 
-useEffect(() => {
+// useEffect(() => {
+
+//     const orders = JSON.parse(localStorage.getItem("orders")) || [];
+//     const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  
+//     if (cart.length > 0) {
+//       orders.push(cart);
+//       localStorage.setItem("orders", JSON.stringify(orders));
+//     }
+  
+//     setCart([]);
+  
+//     localStorage.removeItem("cart");
+  
+//   }, []);
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
     const orders = JSON.parse(localStorage.getItem("orders")) || [];
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -26,10 +42,6 @@ useEffect(() => {
     setCart([]);
   
     localStorage.removeItem("cart");
-  
-  }, []);
-  const handleSubmit = (e) => {
-    e.preventDefault();
     setSubmitted(true);
     };
   

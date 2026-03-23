@@ -3,6 +3,8 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faBars, faSearch, faUser, faCartShopping} from '@fortawesome/free-solid-svg-icons';
 import {Link, useNavigate} from 'react-router-dom';
 import CartSidebar from './CartSidebar';
+import Search from "./Search";
+import UserMenu from './UserMenu';
 
 function Header({search, setSearch, cart, setCart}) {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -69,32 +71,11 @@ return (
  </div>
           </div>
 <div className="d-flex align-items-center gap-3 position-relative">
-             {isSearchOpen && (
-              <div>
-                <input
-                  type="text"
-                  className="form-control form-control-sm me-2"
-                  placeholder="Search..."
-                  value={search}
-                  onChange={(e)=>{
-      
-                    const value =e.target.value;
-                    if (typeof setSearch ==="function"){
 
-                    setSearch(value);
-                    }
-                  if (value.length >= 3) {
-                 
-                  navigate(`/shop?search=${value}`);
-                    
-                  }}
-                }
-                  style={{ width: '300px' }}
-                  />
-                
-                </div>
-            )}
-             {search && search.length >= 2 && (
+             {isSearchOpen && (
+            <Search search={search} setSearch={setSearch} />
+              )}
+             {search && search.length >= 3 && (
                   <div className="search-results">
                   
                   {products
@@ -136,35 +117,8 @@ return (
               >
              <FontAwesomeIcon icon={faUser} />
               </button>
-              <ul className="dropdown-menu dropdown-menu-end">
-                {!user && (
-                <li>
-                  <Link className="dropdown-item" to="/signin">
-                    Sign In
-                  </Link>
-                </li>
-                )}
-                {user && (
-                  <>
-                <li>
-                  <Link className="dropdown-item" to="/my-account">
-                    My Account
-                  </Link>
-                </li>
-
-                <li>
-                  <Link className="dropdown-item" to="/my-orders">
-                    My Orders
-                  </Link>
-                </li>
-                <li>
-          <button className='dropdown-item' onClick={handleLogout}>
-                     Logout
-          </button>
-          </li>
-          </>
-                )}
-                </ul>
+          
+                <UserMenu user={user} handleLogout={handleLogout} />
            </div>
             <button className="btn p-0 position-relative text-white" onClick={openCart}>
                 <FontAwesomeIcon icon={faCartShopping} />

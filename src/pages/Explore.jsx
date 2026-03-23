@@ -16,7 +16,10 @@ function Explore() {
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
       .then(res => res.json())
-      .then(data => setProducts(data));
+      .then(data => setProducts(data))
+      .catch(error =>{
+        console.error("Error loading products:", error);
+      });
   }, []);
 
   const allProducts = [
