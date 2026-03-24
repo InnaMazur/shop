@@ -1,4 +1,4 @@
-import React, {useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faBars, faSearch, faUser, faCartShopping} from '@fortawesome/free-solid-svg-icons';
 import {Link, useNavigate} from 'react-router-dom';
@@ -12,16 +12,11 @@ function Header({search, setSearch, cart, setCart}) {
     localStorage.removeItem("user");
     localStorage.removeItem("orders");
     localStorage.removeItem("cart");
-    // window.location.reload();
     navigate ("/");
   };
  
     const [isSearchOpen, setIsSearchOpen] = useState(false);
-    const closeSearch = ()=> {
-      setIsSearchOpen(false)
-      setSearch("")
-    }
-  
+ 
   const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -32,11 +27,6 @@ function Header({search, setSearch, cart, setCart}) {
 
     ];
 
-  const handleSignOut = () => {
-    localStorage.removeItem("user");
-    setUser(null);
-    navigate("/");
-  };
   const openSidebar = () => {
     setSidebarOpen(true)
     }

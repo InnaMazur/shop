@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 function Checkout({setCart}){
 
   const [submitted, setSubmitted] = useState(false);
-  const user = localStorage.getItem("user");
+  const user = JSON.parse(localStorage.getItem("user"));
 const navigate = useNavigate();
 useEffect(() => {
   if (!user) {
@@ -13,21 +13,6 @@ useEffect(() => {
   }
 }, []);
 
-// useEffect(() => {
-
-//     const orders = JSON.parse(localStorage.getItem("orders")) || [];
-//     const cart = JSON.parse(localStorage.getItem("cart")) || [];
-  
-//     if (cart.length > 0) {
-//       orders.push(cart);
-//       localStorage.setItem("orders", JSON.stringify(orders));
-//     }
-  
-//     setCart([]);
-  
-//     localStorage.removeItem("cart");
-  
-//   }, []);
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -35,7 +20,10 @@ useEffect(() => {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
   
     if (cart.length > 0) {
-      orders.push(cart);
+      orders.push({
+       items: cart,
+       userEmail:user.email
+      });
       localStorage.setItem("orders", JSON.stringify(orders));
     }
   

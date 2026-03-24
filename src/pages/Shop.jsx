@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import Clothes from "../components/Clothes.jsx";
 import { useLocation } from "react-router-dom";
 

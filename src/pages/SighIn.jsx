@@ -1,7 +1,6 @@
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "../components/Header";
 import {useLocation} from "react-router-dom";
 
 function SignIn() {
@@ -22,6 +21,7 @@ function SignIn() {
 
     localStorage.setItem("user", JSON.stringify(user));
     navigate("/my-account");
+    window.location.reload();
   };
 
   return (

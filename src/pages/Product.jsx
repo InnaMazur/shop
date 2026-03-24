@@ -11,11 +11,15 @@ const [product, setProduct] = useState(null);
 const [showMessage, setShowMessage]=useState(false);
 useEffect(() => {
     const loadProduct = async () => {
+      try{
         const products = await getProducts();
         const foundProduct = products.find(
             p => p.id === Number(id)
         );
         setProduct(foundProduct);
+      }catch (error) {
+        console.error('Error loading product:', error);
+      }
     };
 
     loadProduct();

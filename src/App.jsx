@@ -13,9 +13,6 @@ import Product from './pages/Product.jsx';
 import Checkout from './pages/Checkout';
 import Explore from './pages/Explore.jsx';
 import NotFound from './pages/NotFound.jsx';
-import Footer from './components/Footer.jsx';
-
-
 
 function App() {
 const [search, setSearch] = useState("");

@@ -1,13 +1,20 @@
 
 
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 function MyOrders() {
+  const user = JSON.parse(localStorage.getItem("user"));
+  if (!user){
+    return <Navigate to ="/signin" />
+  }
+ 
+  const allOrders = JSON.parse(localStorage.getItem("orders")) || [];
 
-  const orders = JSON.parse(localStorage.getItem("orders")) || [];
-
-  if (orders.length === 0) {
+  const userOrders = allOrders.filter(order =>
+    order.userEmail === user.email
+  );
+  if (userOrders.length === 0) {
     return (
       <div className="container text-center" style={{marginTop:"150px"}}>
         <h3>You don't have any orders yet.</h3>
@@ -23,9 +30,9 @@ function MyOrders() {
 
       <h2 className="text-center mt-5 mb-4 fw-bold text-dark">My Orders</h2>
 
-      {orders.map((order, index) => {
+      {userOrders.map((order, index) => {
 
-        const totalPrice = order.reduce(
+        const totalPrice = order.items.reduce(
           (sum, item) => sum + item.price * item.quantity,
           0
         );
@@ -34,7 +41,7 @@ function MyOrders() {
 
           <div key={index} className="card mb-4 p-4 shadow-sm">
 
-            {order.map((item) => (
+            {order.items.map((item) => (
 
               <div
                 key={item.id}
